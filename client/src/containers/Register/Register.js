@@ -15,12 +15,18 @@ const Register = ({ register, history, registerAuth }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
-    setFormData({ loading: !1 });
+    setFormData({
+      username: document.getElementById('username').value,
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+      loading: !1
+    });
   }, [registerAuth.authData]);
   return (
     <div>
       <div class='reg-containerr'>
         <h2>Create account</h2>
+      <p className='benefit'>Register to have access to up to 10GB of storage, view all your upload history, track the number of downloads on your uploaded files and many more.</p>
         <form
           onSubmit={e => {
             e.preventDefault();
@@ -73,13 +79,13 @@ const Register = ({ register, history, registerAuth }) => {
           )}
         </form>
         <p className='mt-4'>
-          Already have an account?<Link to='/login'>Login</Link>{' '}
+          Already have an account?<Link to='/login'> Login</Link>{' '}
         </p>
       </div>
     </div>
   );
 };
-const mapStateToProps = state => ({ registerAuth: state.auth });
+const mapStateToProps = state => ({ registerAuth: state.authError });
 export default connect(
   mapStateToProps,
   { register }
